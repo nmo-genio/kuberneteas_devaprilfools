@@ -33,13 +33,17 @@ import { Runbook } from './components/Runbook';
 import { PromTeaus } from './components/PromTeaus';
 import { PodTopology } from './components/PodTopology';
 import { ServiceMesh } from './components/ServiceMesh';
+import { KettleShell } from './components/KettleShell';
+import { WaterIngress } from './components/WaterIngress';
+import { HeatOperators } from './components/HeatOperators';
+import { AromaSidecars } from './components/AromaSidecars';
 import { cn } from './lib/utils';
 
 // Initialize Gemini API (Placeholder for user to connect)
 const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'runbook' | 'prom-teaus' | 'pod-topology' | 'service-mesh'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'runbook' | 'prom-teaus' | 'pod-topology' | 'service-mesh' | 'kettle-shell' | 'water-ingress' | 'heat-operators' | 'aroma-sidecars'>('dashboard');
   const [isTeapotErrorOpen, setIsTeapotErrorOpen] = useState(false);
   const [isSteaming, setIsSteaming] = useState(false);
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
@@ -213,12 +217,32 @@ export default function App() {
               active={currentView === 'service-mesh'}
               onClick={() => setCurrentView('service-mesh')}
             />
-          <NavItem icon={<Terminal className="w-4 h-4" />} label="Kettle Shell" />
+            <NavItem 
+              icon={<Terminal className="w-4 h-4" />} 
+              label="Kettle Shell" 
+              active={currentView === 'kettle-shell'}
+              onClick={() => setCurrentView('kettle-shell')}
+            />
           
           <div className="pt-8 pb-2 px-3 text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Infrastructure</div>
-          <NavItem icon={<Droplets className="w-4 h-4" />} label="Water Ingress" />
-          <NavItem icon={<Thermometer className="w-4 h-4" />} label="Heat Operators" />
-          <NavItem icon={<Wind className="w-4 h-4" />} label="Aroma Sidecars" />
+          <NavItem 
+            icon={<Droplets className="w-4 h-4" />} 
+            label="Water Ingress" 
+            active={currentView === 'water-ingress'}
+            onClick={() => setCurrentView('water-ingress')}
+          />
+          <NavItem 
+            icon={<Thermometer className="w-4 h-4" />} 
+            label="Heat Operators" 
+            active={currentView === 'heat-operators'}
+            onClick={() => setCurrentView('heat-operators')}
+          />
+          <NavItem 
+            icon={<Wind className="w-4 h-4" />} 
+            label="Aroma Sidecars" 
+            active={currentView === 'aroma-sidecars'}
+            onClick={() => setCurrentView('aroma-sidecars')}
+          />
         </nav>
 
               {/* Main Dashboard Area */}
@@ -451,7 +475,7 @@ export default function App() {
           >
             <PodTopology onBack={() => setCurrentView('dashboard')} />
           </motion.div>
-        ) : (
+        ) : currentView === 'service-mesh' ? (
           <motion.div 
             key="service-mesh"
             initial={{ opacity: 0 }}
@@ -459,6 +483,42 @@ export default function App() {
             exit={{ opacity: 0 }}
           >
             <ServiceMesh onBack={() => setCurrentView('dashboard')} />
+          </motion.div>
+        ) : currentView === 'kettle-shell' ? (
+          <motion.div 
+            key="kettle-shell"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <KettleShell onBack={() => setCurrentView('dashboard')} />
+          </motion.div>
+        ) : currentView === 'water-ingress' ? (
+          <motion.div 
+            key="water-ingress"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <WaterIngress onBack={() => setCurrentView('dashboard')} />
+          </motion.div>
+        ) : currentView === 'heat-operators' ? (
+          <motion.div 
+            key="heat-operators"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <HeatOperators onBack={() => setCurrentView('dashboard')} />
+          </motion.div>
+        ) : (
+          <motion.div 
+            key="aroma-sidecars"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <AromaSidecars onBack={() => setCurrentView('dashboard')} />
           </motion.div>
         )}
       </AnimatePresence>

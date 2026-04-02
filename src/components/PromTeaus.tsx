@@ -39,10 +39,10 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
         return (
           <div className="space-y-6">
             {/* Expression Bar */}
-            <div className="bg-white border border-gray-300 rounded shadow-sm p-4">
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-bold uppercase text-gray-500">Expression</span>
-                <Info className="w-3 h-3 text-gray-400" />
+                <span className="text-xs font-bold uppercase text-zinc-500">Expression</span>
+                <Info className="w-3 h-3 text-zinc-600" />
               </div>
               <div className="flex gap-2">
                 <div className="flex-1 relative">
@@ -50,9 +50,9 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
                     type="text" 
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    className="w-full border border-gray-300 rounded px-3 py-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-2 font-mono text-sm text-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                   />
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-gray-400 font-mono">
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-zinc-600 font-mono">
                     [Shift + Enter]
                   </div>
                 </div>
@@ -63,25 +63,25 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
             </div>
 
             {/* Graph/Table Area */}
-            <div className="bg-white border border-gray-300 rounded shadow-sm overflow-hidden">
-              <div className="bg-gray-50 border-b border-gray-300 px-4 py-2 flex items-center justify-between">
-                <div className="flex gap-4 text-xs font-bold text-gray-600 uppercase">
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm overflow-hidden">
+              <div className="bg-zinc-800/50 border-b border-zinc-800 px-4 py-2 flex items-center justify-between">
+                <div className="flex gap-4 text-xs font-bold text-zinc-400 uppercase">
                   <button 
                     onClick={() => setSubTab('Graph')}
-                    className={cn(subTab === 'Graph' ? "text-blue-600 border-b-2 border-blue-600 pb-1" : "hover:text-blue-600")}
+                    className={cn(subTab === 'Graph' ? "text-blue-400 border-b-2 border-blue-400 pb-1" : "hover:text-blue-400")}
                   >
                     Graph
                   </button>
                   <button 
                     onClick={() => setSubTab('Table')}
-                    className={cn(subTab === 'Table' ? "text-blue-600 border-b-2 border-blue-600 pb-1" : "hover:text-blue-600")}
+                    className={cn(subTab === 'Table' ? "text-blue-400 border-b-2 border-blue-400 pb-1" : "hover:text-blue-400")}
                   >
                     Table
                   </button>
                 </div>
                 <div className="flex gap-2">
-                  <button className="bg-white border border-gray-300 px-2 py-1 rounded text-xs hover:bg-gray-50">1h</button>
-                  <button className="bg-white border border-gray-300 px-2 py-1 rounded text-xs hover:bg-gray-50">Stacked</button>
+                  <button className="bg-zinc-800 border border-zinc-700 px-2 py-1 rounded text-xs text-zinc-300 hover:bg-zinc-700">1h</button>
+                  <button className="bg-zinc-800 border border-zinc-700 px-2 py-1 rounded text-xs text-zinc-300 hover:bg-zinc-700">Stacked</button>
                 </div>
               </div>
               
@@ -90,11 +90,11 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
                   <div className="p-6 h-[400px]">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={graphData}>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" />
                         <XAxis dataKey="time" hide />
-                        <YAxis stroke="#999" fontSize={12} />
+                        <YAxis stroke="#666" fontSize={12} />
                         <Tooltip 
-                          contentStyle={{ backgroundColor: '#fff', border: '1px solid #ccc', fontSize: '12px' }}
+                          contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', fontSize: '12px', color: '#ccc' }}
                           itemStyle={{ padding: '2px 0' }}
                         />
                         <Line type="monotone" dataKey="earl_grey" stroke="#e6522c" strokeWidth={2} dot={false} name="flavor='earl_grey'" />
@@ -103,16 +103,16 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
-                  <div className="bg-gray-50 border-t border-gray-300 p-4 font-mono text-[11px] space-y-1">
+                  <div className="bg-zinc-950/50 border-t border-zinc-800 p-4 font-mono text-[11px] space-y-1">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 bg-[#e6522c]" />
-                      <span>{"{flavor=\"earl_grey\", instance=\"kettle-01\", job=\"tea-orchestrator\"}"}</span>
+                      <span className="text-zinc-400">{"{flavor=\"earl_grey\", instance=\"kettle-01\", job=\"tea-orchestrator\"}"}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-500">
+                    <div className="flex items-center gap-2 text-zinc-500">
                       <div className="w-3 h-3 bg-[#337ab7]" />
                       <span>{"{flavor=\"chamomile\", instance=\"kettle-02\", job=\"tea-orchestrator\"}"}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-500">
+                    <div className="flex items-center gap-2 text-zinc-500">
                       <div className="w-3 h-3 bg-[#5cb85c]" />
                       <span>{"{flavor=\"oolong\", instance=\"kettle-01\", job=\"tea-orchestrator\"}"}</span>
                     </div>
@@ -122,23 +122,23 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
                 <div className="p-4 overflow-x-auto">
                   <table className="w-full text-xs font-mono border-collapse">
                     <thead>
-                      <tr className="bg-gray-100 border-b border-gray-300 text-left">
-                        <th className="p-2 border-r border-gray-300">Element</th>
+                      <tr className="bg-zinc-800/50 border-b border-zinc-800 text-left text-zinc-400">
+                        <th className="p-2 border-r border-zinc-800">Element</th>
                         <th className="p-2">Value</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-gray-200">
-                        <td className="p-2 border-r border-gray-200">{"{flavor=\"earl_grey\", instance=\"kettle-01\"}"}</td>
-                        <td className="p-2 text-blue-600 font-bold">{graphData[graphData.length - 1]?.earl_grey}</td>
+                      <tr className="border-b border-zinc-800 text-zinc-300">
+                        <td className="p-2 border-r border-zinc-800">{"{flavor=\"earl_grey\", instance=\"kettle-01\"}"}</td>
+                        <td className="p-2 text-blue-400 font-bold">{graphData[graphData.length - 1]?.earl_grey}</td>
                       </tr>
-                      <tr className="border-b border-gray-200">
-                        <td className="p-2 border-r border-gray-200">{"{flavor=\"chamomile\", instance=\"kettle-02\"}"}</td>
-                        <td className="p-2 text-blue-600 font-bold">{graphData[graphData.length - 1]?.chamomile}</td>
+                      <tr className="border-b border-zinc-800 text-zinc-300">
+                        <td className="p-2 border-r border-zinc-800">{"{flavor=\"chamomile\", instance=\"kettle-02\"}"}</td>
+                        <td className="p-2 text-blue-400 font-bold">{graphData[graphData.length - 1]?.chamomile}</td>
                       </tr>
-                      <tr className="border-b border-gray-200">
-                        <td className="p-2 border-r border-gray-200">{"{flavor=\"oolong\", instance=\"kettle-01\"}"}</td>
-                        <td className="p-2 text-blue-600 font-bold">{graphData[graphData.length - 1]?.oolong}</td>
+                      <tr className="border-b border-zinc-800 text-zinc-300">
+                        <td className="p-2 border-r border-zinc-800">{"{flavor=\"oolong\", instance=\"kettle-01\"}"}</td>
+                        <td className="p-2 text-blue-400 font-bold">{graphData[graphData.length - 1]?.oolong}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -148,8 +148,8 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
 
             {/* Targets & Alerts Parody */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white border border-gray-300 rounded shadow-sm">
-                <div className="bg-gray-50 border-b border-gray-300 px-4 py-2 font-bold text-sm text-gray-700">
+              <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm">
+                <div className="bg-zinc-800/50 border-b border-zinc-800 px-4 py-2 font-bold text-sm text-zinc-300">
                   Scrape Targets (2/3 UP)
                 </div>
                 <div className="p-4 space-y-3">
@@ -159,8 +159,8 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
                 </div>
               </div>
 
-              <div className="bg-white border border-gray-300 rounded shadow-sm">
-                <div className="bg-gray-50 border-b border-gray-300 px-4 py-2 font-bold text-sm text-gray-700">
+              <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm">
+                <div className="bg-zinc-800/50 border-b border-zinc-800 px-4 py-2 font-bold text-sm text-zinc-300">
                   Active Alerts (1 Firing)
                 </div>
                 <div className="p-4 space-y-3">
@@ -171,14 +171,14 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
             </div>
 
             {/* Metric Explorer Parody */}
-            <div className="bg-white border border-gray-300 rounded shadow-sm p-4">
-              <h3 className="font-bold text-sm text-gray-700 mb-4 uppercase tracking-wider">Metric Explorer</h3>
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm p-4">
+              <h3 className="font-bold text-sm text-zinc-300 mb-4 uppercase tracking-wider">Metric Explorer</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 {MOCK_METRICS.map(metric => (
                   <div 
                     key={metric} 
                     onClick={() => setQuery(metric)}
-                    className="text-[11px] font-mono bg-gray-100 hover:bg-blue-100 hover:text-blue-700 p-2 rounded cursor-pointer transition-colors truncate"
+                    className="text-[11px] font-mono bg-zinc-800 hover:bg-blue-900/30 hover:text-blue-400 p-2 rounded cursor-pointer transition-colors truncate text-zinc-400 border border-zinc-700"
                   >
                     {metric}
                   </div>
@@ -190,40 +190,40 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
       case 'Alerts':
         return (
           <div className="space-y-6">
-            <div className="bg-white border border-gray-300 rounded shadow-sm overflow-hidden">
-              <div className="bg-gray-50 border-b border-gray-300 px-4 py-2 font-bold text-sm">
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm overflow-hidden">
+              <div className="bg-zinc-800/50 border-b border-zinc-800 px-4 py-2 font-bold text-sm text-zinc-300">
                 Alerting Rules
               </div>
               <div className="p-0">
-                <div className="p-4 bg-red-50 border-b border-gray-200">
-                  <div className="flex items-center gap-2 text-red-700 font-bold mb-2">
+                <div className="p-4 bg-red-900/10 border-b border-zinc-800">
+                  <div className="flex items-center gap-2 text-red-400 font-bold mb-2">
                     <AlertCircle className="w-4 h-4" />
                     <span>TeaIsCold (1 firing)</span>
                   </div>
                   <div className="ml-6 space-y-2">
-                    <div className="bg-white border border-red-200 p-3 rounded text-xs font-mono">
-                      <p className="text-gray-500 mb-1">Labels:</p>
+                    <div className="bg-zinc-950 border border-red-900/30 p-3 rounded text-xs font-mono">
+                      <p className="text-zinc-500 mb-1">Labels:</p>
                       <div className="flex flex-wrap gap-2">
-                        <span className="bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">alertname="TeaIsCold"</span>
-                        <span className="bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">severity="critical"</span>
-                        <span className="bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">instance="mug-01"</span>
+                        <span className="bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700 text-zinc-300">alertname="TeaIsCold"</span>
+                        <span className="bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700 text-zinc-300">severity="critical"</span>
+                        <span className="bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700 text-zinc-300">instance="mug-01"</span>
                       </div>
-                      <p className="text-gray-500 mt-3 mb-1">Annotations:</p>
-                      <p><span className="font-bold">summary:</span> Water temperature dropped below 80°C</p>
-                      <p><span className="font-bold">description:</span> The tea is becoming undrinkable. Immediate microwave intervention required.</p>
+                      <p className="text-zinc-500 mt-3 mb-1">Annotations:</p>
+                      <p className="text-zinc-300"><span className="font-bold text-zinc-400">summary:</span> Water temperature dropped below 80°C</p>
+                      <p className="text-zinc-300"><span className="font-bold text-zinc-400">description:</span> The tea is becoming undrinkable. Immediate microwave intervention required.</p>
                       <div className="mt-4 flex gap-2">
-                        <button className="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded text-[10px] font-bold">Silence</button>
+                        <button className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-3 py-1 rounded text-[10px] font-bold border border-zinc-700">Silence</button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="p-4 bg-yellow-50">
-                  <div className="flex items-center gap-2 text-yellow-700 font-bold mb-2">
+                <div className="p-4 bg-yellow-900/10">
+                  <div className="flex items-center gap-2 text-yellow-400 font-bold mb-2">
                     <Info className="w-4 h-4" />
                     <span>TooMuchSugar (0 firing, 1 pending)</span>
                   </div>
                   <div className="ml-6">
-                    <p className="text-xs text-gray-600">Expression: sugar_cubes_total {">"} 3</p>
+                    <p className="text-xs text-zinc-500">Expression: sugar_cubes_total {">"} 3</p>
                   </div>
                 </div>
               </div>
@@ -233,8 +233,8 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
       case 'Status':
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white border border-gray-300 rounded shadow-sm">
-              <div className="bg-gray-50 border-b border-gray-300 px-4 py-2 font-bold text-sm">Runtime Information</div>
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm">
+              <div className="bg-zinc-800/50 border-b border-zinc-800 px-4 py-2 font-bold text-sm text-zinc-300">Runtime Information</div>
               <table className="w-full text-xs border-collapse">
                 <tbody>
                   <StatusRow label="Tea Version" value="1.19.4" />
@@ -244,8 +244,8 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
                 </tbody>
               </table>
             </div>
-            <div className="bg-white border border-gray-300 rounded shadow-sm">
-              <div className="bg-gray-50 border-b border-gray-300 px-4 py-2 font-bold text-sm">Build Information</div>
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm">
+              <div className="bg-zinc-800/50 border-b border-zinc-800 px-4 py-2 font-bold text-sm text-zinc-300">Build Information</div>
               <table className="w-full text-xs border-collapse">
                 <tbody>
                   <StatusRow label="Version" value="2.41.8-tea" />
@@ -256,9 +256,9 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
                 </tbody>
               </table>
             </div>
-            <div className="bg-white border border-gray-300 rounded shadow-sm md:col-span-2">
-              <div className="bg-gray-50 border-b border-gray-300 px-4 py-2 font-bold text-sm">Command-line Flags</div>
-              <div className="p-4 font-mono text-xs text-gray-600 space-y-1">
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm md:col-span-2">
+              <div className="bg-zinc-800/50 border-b border-zinc-800 px-4 py-2 font-bold text-sm text-zinc-300">Command-line Flags</div>
+              <div className="p-4 font-mono text-xs text-zinc-500 space-y-1">
                 <p>--config.file="tea.yml"</p>
                 <p>--storage.tea.path="/var/lib/tea"</p>
                 <p>--web.listen-address=":9090"</p>
@@ -270,11 +270,11 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
         );
       case 'Help':
         return (
-          <div className="bg-white border border-gray-300 rounded shadow-sm p-6 space-y-6">
-            <h2 className="text-xl font-bold border-b border-gray-200 pb-2">Prom-TEA-QL Cheat Sheet</h2>
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded shadow-sm p-6 space-y-6">
+            <h2 className="text-xl font-bold border-b border-zinc-800 pb-2 text-zinc-200">Prom-TEA-QL Cheat Sheet</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h3 className="font-bold text-blue-700">Selectors</h3>
+                <h3 className="font-bold text-blue-400">Selectors</h3>
                 <div className="space-y-2">
                   <HelpItem query="tea_saturation_ratio" desc="Select all saturation metrics" />
                   <HelpItem query="tea_saturation_ratio{flavor='earl_grey'}" desc="Filter by flavor" />
@@ -282,7 +282,7 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
                 </div>
               </div>
               <div className="space-y-4">
-                <h3 className="font-bold text-blue-700">Functions</h3>
+                <h3 className="font-bold text-blue-400">Functions</h3>
                 <div className="space-y-2">
                   <HelpItem query="rate(tea_consumption_total[5m])" desc="Per-second rate of consumption" />
                   <HelpItem query="sum(tea_replicas) by (flavor)" desc="Aggregate replicas by flavor" />
@@ -290,7 +290,7 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
                 </div>
               </div>
             </div>
-            <div className="bg-blue-50 p-4 rounded border border-blue-100 text-sm text-blue-800 italic">
+            <div className="bg-blue-900/10 p-4 rounded border border-blue-900/30 text-sm text-blue-300 italic">
               "If the query returns 418, you are likely using a coffee pot. Please upgrade to a certified teapot."
             </div>
           </div>
@@ -299,9 +299,9 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f0f0f0] text-[#333] font-sans flex flex-col">
+    <div className="min-h-screen bg-[#0d0d0d] text-zinc-300 font-sans flex flex-col">
       {/* Prometheus Style Header */}
-      <header className="bg-[#4e5d6c] text-white px-4 py-2 flex items-center justify-between shadow-md">
+      <header className="bg-[#1a1a1a] text-white px-4 py-2 flex items-center justify-between shadow-md border-b border-zinc-800">
         <div className="flex items-center gap-4">
           <button onClick={onBack} className="hover:bg-white/10 p-1 rounded transition-colors">
             <ArrowLeft className="w-5 h-5" />
@@ -348,7 +348,7 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
         {renderContent()}
       </main>
 
-      <footer className="bg-gray-200 border-t border-gray-300 px-4 py-1 text-[10px] text-gray-500 flex justify-between">
+      <footer className="bg-[#1a1a1a] border-t border-zinc-800 px-4 py-1 text-[10px] text-zinc-500 flex justify-between">
         <span>Prom-TEA-us v2.41.8-tea</span>
         <span>Build: 2026-04-01T12:00:00Z</span>
       </footer>
@@ -358,9 +358,9 @@ export const PromTeaus: React.FC<PromTeausProps> = ({ onBack }) => {
 
 function StatusRow({ label, value }: { label: string, value: string }) {
   return (
-    <tr className="border-b border-gray-100 last:border-0">
-      <td className="p-2 font-bold text-gray-600 bg-gray-50 w-1/3 border-r border-gray-100">{label}</td>
-      <td className="p-2 font-mono">{value}</td>
+    <tr className="border-b border-zinc-800 last:border-0">
+      <td className="p-2 font-bold text-zinc-400 bg-zinc-900/50 w-1/3 border-r border-zinc-800">{label}</td>
+      <td className="p-2 font-mono text-zinc-300">{value}</td>
     </tr>
   );
 }
@@ -368,22 +368,22 @@ function StatusRow({ label, value }: { label: string, value: string }) {
 function HelpItem({ query, desc }: { query: string, desc: string }) {
   return (
     <div className="space-y-1">
-      <div className="bg-gray-100 p-1.5 rounded font-mono text-xs border border-gray-200">{query}</div>
-      <div className="text-[11px] text-gray-500 pl-1">{desc}</div>
+      <div className="bg-zinc-800 p-1.5 rounded font-mono text-xs border border-zinc-700 text-zinc-300">{query}</div>
+      <div className="text-[11px] text-zinc-500 pl-1">{desc}</div>
     </div>
   );
 }
 
 function TargetItem({ name, status, lastScrape, error }: { name: string, status: 'UP' | 'DOWN', lastScrape: string, error?: string }) {
   return (
-    <div className="flex items-center justify-between border-b border-gray-100 pb-2 last:border-0 last:pb-0">
+    <div className="flex items-center justify-between border-b border-zinc-800 pb-2 last:border-0 last:pb-0">
       <div className="flex flex-col">
-        <span className="text-xs font-mono font-bold text-blue-600">{name}</span>
+        <span className="text-xs font-mono font-bold text-blue-400">{name}</span>
         {error && <span className="text-[10px] text-red-500 italic">{error}</span>}
       </div>
       <div className="flex items-center gap-4">
-        <span className="text-[10px] text-gray-400">{lastScrape}</span>
-        <div className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold ${status === 'UP' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+        <span className="text-[10px] text-zinc-500">{lastScrape}</span>
+        <div className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold ${status === 'UP' ? 'bg-green-900/20 text-green-400' : 'bg-red-900/20 text-red-400'}`}>
           {status === 'UP' ? <CheckCircle2 className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
           {status}
         </div>
@@ -394,18 +394,18 @@ function TargetItem({ name, status, lastScrape, error }: { name: string, status:
 
 function AlertItem({ name, status, severity, summary }: { name: string, status: 'FIRING' | 'PENDING', severity: 'critical' | 'warning', summary: string }) {
   return (
-    <div className="flex items-start gap-3 border-b border-gray-100 pb-2 last:border-0 last:pb-0">
+    <div className="flex items-start gap-3 border-b border-zinc-800 pb-2 last:border-0 last:pb-0">
       <div className={`mt-1 ${status === 'FIRING' ? 'text-red-500' : 'text-yellow-500'}`}>
         <AlertCircle className="w-4 h-4" />
       </div>
       <div className="flex-1">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-gray-800">{name}</span>
+          <span className="text-xs font-bold text-zinc-300">{name}</span>
           <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${status === 'FIRING' ? 'bg-red-600 text-white' : 'bg-yellow-400 text-black'}`}>
             {status}
           </span>
         </div>
-        <p className="text-[10px] text-gray-500 mt-0.5">{summary}</p>
+        <p className="text-[10px] text-zinc-500 mt-0.5">{summary}</p>
       </div>
     </div>
   );
