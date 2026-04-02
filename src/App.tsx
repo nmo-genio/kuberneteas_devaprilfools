@@ -32,13 +32,14 @@ import { TeapotError } from './components/TeapotError';
 import { Runbook } from './components/Runbook';
 import { PromTeaus } from './components/PromTeaus';
 import { PodTopology } from './components/PodTopology';
+import { ServiceMesh } from './components/ServiceMesh';
 import { cn } from './lib/utils';
 
 // Initialize Gemini API (Placeholder for user to connect)
 const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'runbook' | 'prom-teaus' | 'pod-topology'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'runbook' | 'prom-teaus' | 'pod-topology' | 'service-mesh'>('dashboard');
   const [isTeapotErrorOpen, setIsTeapotErrorOpen] = useState(false);
   const [isSteaming, setIsSteaming] = useState(false);
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
@@ -206,7 +207,12 @@ export default function App() {
               active={currentView === 'pod-topology'}
               onClick={() => setCurrentView('pod-topology')}
             />
-            <NavItem icon={<Cloud className="w-4 h-4" />} label="Service Mesh" />
+            <NavItem 
+              icon={<Cloud className="w-4 h-4" />} 
+              label="Service Mesh" 
+              active={currentView === 'service-mesh'}
+              onClick={() => setCurrentView('service-mesh')}
+            />
           <NavItem icon={<Terminal className="w-4 h-4" />} label="Kettle Shell" />
           
           <div className="pt-8 pb-2 px-3 text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Infrastructure</div>
@@ -436,7 +442,7 @@ export default function App() {
           >
             <PromTeaus onBack={() => setCurrentView('dashboard')} />
           </motion.div>
-        ) : (
+        ) : currentView === 'pod-topology' ? (
           <motion.div 
             key="pod-topology"
             initial={{ opacity: 0 }}
@@ -444,6 +450,15 @@ export default function App() {
             exit={{ opacity: 0 }}
           >
             <PodTopology onBack={() => setCurrentView('dashboard')} />
+          </motion.div>
+        ) : (
+          <motion.div 
+            key="service-mesh"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <ServiceMesh onBack={() => setCurrentView('dashboard')} />
           </motion.div>
         )}
       </AnimatePresence>
